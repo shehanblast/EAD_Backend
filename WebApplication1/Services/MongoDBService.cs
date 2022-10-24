@@ -152,6 +152,22 @@ public class MongoDBService
         return await _queueCollection.Find(filter).Limit(1).SingleAsync();
 
     }
+    //get queue list according to user id
+    public async Task<List<Queue>> GetAsyncOneQueueUser(string id)
+    {
+        FilterDefinition<Queue> filter = Builders<Queue>.Filter.Eq("UserId", id);
+        return await _queueCollection.Find(filter).ToListAsync();
+
+    }
+
+    //get queue length according to stationId
+    public async Task<List<Queue>> GetAsyncQueueLength(string id)
+    {
+        FilterDefinition<Queue> filter = Builders<Queue>.Filter.Eq("StationId", id);
+        return await _queueCollection.Find(filter).ToListAsync();
+
+    }
+
 
     // ----------------------------------
 
