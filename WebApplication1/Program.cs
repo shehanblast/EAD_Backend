@@ -4,7 +4,9 @@ using MongoExample.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.Configure<MongoDBSettings>(builder.Configuration.GetSection("MongoDB"));
-builder.Services.AddSingleton<MongoDBService>();
+builder.Services.AddSingleton<FuelDetailsService>();
+builder.Services.AddSingleton<FuelStationService>();
+builder.Services.AddSingleton<QueueService>();
 
 // Add services to the container.
 

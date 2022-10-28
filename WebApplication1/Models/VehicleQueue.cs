@@ -5,22 +5,22 @@ using System.Text.Json.Serialization;
 namespace MongoExample.Models
 
 {
-    public class Queue
+    public class VehicleQueue
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public string? QueueId { get; set; }
+        public string? VehicleQueueId { get; set; }
 
         public string StationId { get; set; } = null;
 
-        public string UserId { get; set; } = null;
+        public string CustomerId { get; set; } = null;
 
-        public string VeihicleType { get; set; } = null;
-
-        [BsonDateTimeOptions(Representation = BsonType.Document)]
-        public DateTime ArrivalTime { get; set; }
+        public string VeihicleModel { get; set; } = null;
 
         [BsonDateTimeOptions(Representation = BsonType.Document)]
-        public DateTime DepartureTime { get; set; } 
+        public DateTime QueueArrivalTime { get; set; }
+
+        [BsonDateTimeOptions(Representation = BsonType.Document)]
+        public DateTime QueueDepartureTime { get; set; } 
     }
 }

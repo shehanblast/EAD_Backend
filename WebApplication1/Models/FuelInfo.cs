@@ -4,19 +4,21 @@ using System.Text.Json.Serialization;
 
 namespace MongoExample.Models
 {
-    public class FuelDetails
+    public class FuelInfo
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public string? FdId { get; set; }
+        public string? FuelInfoId { get; set; }
 
         public string StationId { get; set; } = null;
 
-        public string FuelName { get; set; } = null;
+        public string Type { get; set; } = null;
+
+        public bool Status { get; set; }
 
         [BsonDateTimeOptions(Representation = BsonType.Document)]
-        public DateTime FuelArrivalTime { get; set; } 
+        public DateTime ArrivalTime { get; set; } 
 
-        public bool FuelFinish { get; set; } 
+     
     }
 }
