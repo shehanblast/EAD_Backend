@@ -66,5 +66,14 @@ public class FuelDetailsService
         return await _fuelDetailsCollection.Find(filter).ToListAsync();
 
     }
+
+    public async Task UpdateArrivalTime(string id, FuelInfo fuelInfo)
+    {
+        FilterDefinition<FuelInfo> filter = Builders<FuelInfo>.Filter.Eq("FuelInfoId", id);
+        UpdateDefinition<FuelInfo> update = Builders<FuelInfo>.Update.Set(p => p.ArrivalTime, fuelInfo.ArrivalTime)
+            .Set(p => p.Status, fuelInfo.Status);
+        await _fuelDetailsCollection.UpdateOneAsync(filter, update);
+        return;
+    }
 }
 

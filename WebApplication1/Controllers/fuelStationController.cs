@@ -62,6 +62,16 @@ public class FuelStationController : Controller
         return await _fuelStationService.FetchFuelStationAccordingToOwnerId(ownerId);
     }
 
+    /* REST API url for fetching a fuel station id document according to station name */
+    [HttpGet("FetchStationIdAccordingtoName")]
+    public async Task<string> GetStationId(string name)
+    {
+        FuelStation fuelStation = new FuelStation();
+        fuelStation = await _fuelStationService.FetchFuelStationIdAccordingToStationname(name);
+
+        return fuelStation.StationId;
+    }
+
 
 }
 

@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using MongoExample.Services;
 using MongoExample.Models;
-
+using System.Text.Json.Nodes;
 
 namespace MongoExample.Controllers;
 
@@ -73,6 +73,17 @@ public class fuelInfoController : Controller
     public async Task<List<FuelInfo>> FetchFuelInfoAccordingToStationAndFuel(string sId, string fName)
     {
         return await _fuelDetailsService.FetchFuelInfoAccordingToStationAndFuel(sId, fName);
+    }
+
+    [HttpPatch("updateArrivalTime/{id}")]
+    public async Task<JsonObject> UpdateArrivalTime(string id, [FromBody] FuelInfo fuelInfo)
+    {
+
+        await _fuelDetailsService.UpdateArrivalTime(id, fuelInfo);
+
+        JsonObject keyValuePairs = new JsonObject();
+
+        return keyValuePairs;
     }
 
 }

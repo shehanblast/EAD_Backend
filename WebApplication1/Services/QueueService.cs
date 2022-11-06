@@ -89,5 +89,13 @@ public class QueueService
         return;
     }
 
+    public async Task<List<VehicleQueue>> CheckAsyncDepartureTime(string id)
+    {
+        FilterDefinition<VehicleQueue> filter = Builders<VehicleQueue>.Filter.Eq("CustomerId", id);
+        return await _queueCollection.Find(filter).ToListAsync();
+
+
+    }
+
 }
 

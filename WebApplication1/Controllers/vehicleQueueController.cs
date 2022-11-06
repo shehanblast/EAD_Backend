@@ -100,28 +100,21 @@ public class vehicleQueueController : Controller
         int count = 0;
 
         TimeSpan average = new TimeSpan();
-
         TimeSpan totalTimeSpent = new TimeSpan();
-  
    
         foreach (VehicleQueue item in queueList)
-
         {
             if (item.QueueDepartureTime  != new DateTime())
             {
                 count++;
-                totalTimeSpent += item.QueueDepartureTime.TimeOfDay - item.QueueArrivalTime.TimeOfDay;
-                
-              
+                totalTimeSpent += item.QueueDepartureTime.TimeOfDay - item.QueueArrivalTime.TimeOfDay;          
             }
-
         }
 
         if(count == 0)
         {
             count = 1;
         }
-
 
         average = totalTimeSpent / count;
 
@@ -190,6 +183,34 @@ public class vehicleQueueController : Controller
         }
 
         return new DateTime().TimeOfDay;
+
+    }
+
+    //check departure time exisits
+    [HttpGet("CheckDepartureTime")]
+    public async Task<VehicleQueue> CheckDepartureTime(string id)
+    {
+        List<VehicleQueue> queueList = new List<VehicleQueue>();
+        queueList = await _queueService.CheckAsyncDepartureTime(id);
+
+
+        VehicleQueue queue = new VehicleQueue();
+
+
+        foreach (VehicleQueue item in queueList)
+
+        {
+            if (item.QueueDepartureTime == new DateTime())
+            {
+
+                queue = item;
+            }
+
+
+        }
+
+        return queue;
+
 
     }
 

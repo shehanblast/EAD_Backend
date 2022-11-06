@@ -67,5 +67,13 @@ public class FuelStationService
         return await _fuelStationCollection.Find(filter).ToListAsync();
 
     }
+
+    /* REST API url for fetching a fuel station id document according to station name */
+    public async Task<FuelStation> FetchFuelStationIdAccordingToStationname(string name)
+    {
+        FilterDefinition<FuelStation> filter = Builders<FuelStation>.Filter.Eq("StationName", name);
+        return await _fuelStationCollection.Find(filter).Limit(1).SingleAsync();
+
+    }
 }
 
