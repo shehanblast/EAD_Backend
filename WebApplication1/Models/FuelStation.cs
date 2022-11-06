@@ -10,15 +10,15 @@ namespace MongoExample.Models
         [BsonRepresentation(BsonType.ObjectId)]
         public string? StationId { get; set; }
 
-        public string Name { get; set; } = null;
+        public string StationName { get; set; } = null;
 
-        public string Address { get; set; } = null;
+        public string Location { get; set; } = null;
 
         public string OwnerId { get; set; } = null;
 
         public string StationNo { get; set; } = null;
 
-        public string City { get; set; } = null;
+        public string Town { get; set; } = null;
 
 
     }
